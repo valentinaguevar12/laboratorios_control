@@ -5,21 +5,30 @@ from geometry_msgs.msg import Twist
 
 class Node():
     def __init__(self):
+        #Esta funcion nos permite inicializar los diferentes elementos del nodo.
+        #Vamos a utilizar la libreria rospy que permite interactuar con ROS usando python.
+        #Para eso creamos una instancia de esta libreria en la clase Node()
         self.rospy = rospy
+        #Inicializamos el nodo con el nombre que aparece en el primer argumento.
         self.rospy.init_node("nodo_control", anonymous = True)
+        #Inicializamos los parametros del nodo
         self.initParameters()
+        #Creamos los suscriptores del nodo
         self.initSubscribers()
+        #Creamos los publicacdores del nodo
         self.initPublishers()
+        #Vamos a la funcion principal del nodo, esta funcion se ejecutara en un loop.
         self.main()
+        return
 
     def initParameters(self):
         #Aqui inicializaremos todas las variables del nodo
         self.topic_ang = "/angular"
-        self.topic_lin = "/lineal"
+        self.topic_lin = "/linear"
         self.topic_vel = "/cmd_vel"
         self.msg_ang = String()
         self.msg_lin = String()
-		self.msg_vel = Twist()
+        self.msg_vel = Twist()
         self.change_ang = False
         self.change_lin = False
         self.rate = self.rospy.Rate(30)
