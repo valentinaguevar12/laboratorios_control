@@ -23,8 +23,8 @@ class Node():
 
     def initParameters(self):
         #Aqui inicializaremos todas las variables del nodo
-        self.topic_ang = "/angular"
-        self.topic_lin = "/linear"
+        self.topic_ang = "/angular_g"
+        self.topic_lin = "/linear_g"
         self.topic_vel = "/cmd_vel"
         self.msg_ang = String()
         self.msg_lin = String()
