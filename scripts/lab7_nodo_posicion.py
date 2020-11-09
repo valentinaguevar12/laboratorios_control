@@ -1,8 +1,9 @@
 #!/usr/bin/python
 import rospy
 import numpy as np
-from nav_msgs.msg import Odometry
+from std_msgs.msg import String
 from geometry_msgs.msg import Twist, Point
+from nav_msgs.msg import Odometry
 
 class NodePosition():
     def __init__(self):
@@ -11,7 +12,7 @@ class NodePosition():
         #Para eso creamos una instancia de esta libreria en la clase Node()
         self.rospy = rospy
         #Inicializamos el nodo con el nombre que aparece en el primer argumento.
-        self.rospy.init_node("nodo_position", anonymous = True)
+        self.rospy.init_node("node_position", anonymous = True)
         #Inicializamos los parametros del nodo
         self.initParameters()
         #Creamos los suscriptores del nodo
@@ -27,17 +28,14 @@ class NodePosition():
         self.kp = 1
         self.ki = 1
         self.kd = 1
-        self.v_limit = 0.5
         self.xe_prev = 0
-        self.v = 0
-        self.w = 0
+        self.v_limit = 0.5
         self.topic_odom = "/odometry/filtered"
         self.topic_set = "/setpoint"
         self.topic_vel = "/cmd_vel"
         self.topic_error = "/error"
         self.change_odom = False
         self.change_set = False
-        self.msg_vel = Twist()
         self.rate = self.rospy.Rate(30)
         return
 
